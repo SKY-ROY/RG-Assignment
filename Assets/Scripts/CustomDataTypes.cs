@@ -8,3 +8,26 @@ public enum SIDE
     Mid, 
     Right
 }
+
+public enum HitX
+{
+    Left,
+    Mid,
+    Right,
+    None
+}
+
+public enum HitY
+{
+    Up,
+    Mid,
+    Down,
+    None
+}
+public enum HitZ
+{
+    Forward,
+    Mid,
+    Backward,
+    None
+}

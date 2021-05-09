@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 286729746}
   - component: {fileID: 286729748}
   - component: {fileID: 286729750}
+  - component: {fileID: 286729751}
   - component: {fileID: 286729747}
   - component: {fileID: 286729749}
   m_Layer: 0
@@ -382,10 +383,13 @@ MonoBehaviour:
   xValue: 2.5
   jumpSpeed: 7.5
   dodgeSpeed: 10
-  fwdMovementSpeed: 7.5
+  fwdMovementSpeed: 0
   slideDuration: 0.5
   inJump: 0
   inRoll: 0
+  hitX: 3
+  hitY: 3
+  hitZ: 3
 --- !u!54 &286729750
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -400,8 +404,22 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 3
+--- !u!136 &286729751
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286729745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.55
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,10 +693,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b5955c2bfb0b34592feb6916aa7273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followSpeed: 5
   distance: 15
   height: 5
   height_Damping: 3.25
   rotation_Damping: 0.27
+  freeFollow: 1
 --- !u!4 &1153310119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 772043459beef2243a0ea88b96927e29,
