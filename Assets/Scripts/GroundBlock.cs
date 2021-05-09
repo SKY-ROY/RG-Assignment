@@ -13,7 +13,7 @@ public class GroundBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag(MyTags.PLAYER_TAG).transform;
         halfLength = (transform.position.z + otherBlock.position.z) / 2f;
     }
 

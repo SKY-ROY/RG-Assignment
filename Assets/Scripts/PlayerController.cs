@@ -100,11 +100,13 @@ public class PlayerController : MonoBehaviour
         {
             if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
             {
+                Debug.Log("Landing");
                 m_Animator.Play("Land");
                 inJump = false;
             }
             if(swipeUp)
             {
+                Debug.Log("Jumping");
                 moveY = jumpSpeed;
                 m_Animator.CrossFadeInFixedTime("Jump", 0.1f);
                 inJump = true;
@@ -112,9 +114,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            moveY = moveY - jumpSpeed * 2 * Time.deltaTime;
+            moveY -= jumpSpeed * 2 * Time.deltaTime;
             if(m_char.velocity.y<-0.1f)
             {
+                Debug.Log("Falling");
                 m_Animator.Play("Fall");
             }
         }
@@ -133,11 +136,12 @@ public class PlayerController : MonoBehaviour
         if(swipeDown)
         {
             slideCounter = slideDuration;
-            moveY = moveY - 10f;
+            moveY -= 10f;
 
             m_char.center = new Vector3(0, colliderCenterY / 2, 0);
             m_char.height = colliderHeight / 2;
 
+            Debug.Log("Sliding");
             m_Animator.CrossFadeInFixedTime("Slide", 0.1f);
             inRoll = true;
             inJump = false;
