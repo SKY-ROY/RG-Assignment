@@ -86,8 +86,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Vector3 moveVector = new Vector3(moveX - transform.position.x, moveY * Time.deltaTime, fwdMovementSpeed * Time.deltaTime);
         moveX = Mathf.Lerp(moveX, newXPos, Time.deltaTime * dodgeSpeed);
+        Vector3 moveVector = new Vector3(moveX - transform.position.x, moveY * Time.deltaTime, fwdMovementSpeed * Time.deltaTime);
         m_char.Move(moveVector);
         
         Jump();
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             moveY -= jumpSpeed * 2 * Time.deltaTime;
-            if(m_char.velocity.y<-0.1f)
+            if(m_char.velocity.y < -0.1f && inJump)
             {
                 Debug.Log("Falling");
                 m_Animator.Play("Fall");
