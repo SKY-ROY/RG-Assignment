@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool swipeLeft, swipeRight, swipeUp, swipeDown;
     
     public SIDE m_side = SIDE.Mid;
-    public float xValue;
+    public float xValue = 2f;
     public float jumpSpeed = 7.5f;
     public float dodgeSpeed = 10f;
     public float fwdMovementSpeed = 7.5f;

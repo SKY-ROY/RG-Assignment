@@ -5,9 +5,10 @@ using UnityEngine;
 public class GroundBlock : MonoBehaviour
 {
     public Transform otherBlock;
+    [HideInInspector]
+    public float halfLength = 100f;
 
     private Transform player;
-    private float halfLength = 100f;
     private float endOffset = 10f;
 
     // Start is called before the first frame update
