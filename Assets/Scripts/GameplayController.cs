@@ -8,18 +8,21 @@ public class GameplayController : MonoBehaviour
 {
     public static GameplayController Instance;
 
-    private PlayerController playerController;
-
+    [Header("Text Elements for stats")]
     public Text coinCount_Text;
     public Text enemyKillCount_Text;
     public Text timePassed_Text;
     public Text distanceTravelled_Text;
+    public Text finalScore_Text;
 
     private int enemyKillCount;
     private int coinCount;
     private float distanceTravelled;
     private float timePassed;
 
+    private PlayerController playerController;
+    
+    [Header("Buttons for adding onClickListeners")]
     [SerializeField]
     private Button pause_Exit_Button;
     [SerializeField]
@@ -30,12 +33,12 @@ public class GameplayController : MonoBehaviour
     private Button resume_Button;
     [SerializeField]
     private Button restart_Button;
+
+    [Header("UI Panels")]
     [SerializeField]
     private GameObject pause_Panel;
     [SerializeField]
     private GameObject gameOver_Panel;
-    [SerializeField]
-    private Text finalScore_Text;
 
     private void Awake()
     {
