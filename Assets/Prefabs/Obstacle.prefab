@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 8616816004389304482}
   - component: {fileID: 8616816004389304483}
   - component: {fileID: 8616816004389304492}
+  - component: {fileID: -1523373948112328536}
+  - component: {fileID: 3200655347955188348}
+  - component: {fileID: -7072394618584379092}
+  - component: {fileID: 7778563958188330885}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -88,8 +92,63 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8616816004389304493}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1523373948112328536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616816004389304493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f524d196f26ca44997bfa5c9e64ba6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 1242859992640132, guid: b8b0365b178d70649aeaa419ad00aa3f,
+    type: 3}
+  damage: 1
+--- !u!114 &3200655347955188348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616816004389304493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d940cb92bf1ffe40884c29679d54b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 1
+--- !u!114 &-7072394618584379092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616816004389304493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d940cb92bf1ffe40884c29679d54b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 2.5
+--- !u!114 &7778563958188330885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616816004389304493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f524d196f26ca44997bfa5c9e64ba6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 0}
+  damage: 1

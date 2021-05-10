@@ -24,10 +24,16 @@ public enum HitY
     Down,
     None
 }
+
 public enum HitZ
 {
     Forward,
     Mid,
     Backward,
     None
+}
+
+public enum Collectable
+{
+    Coin
 }

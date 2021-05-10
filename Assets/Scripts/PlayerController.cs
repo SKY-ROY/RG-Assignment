@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool swipeLeft, swipeRight, swipeUp, swipeDown;
     
     public SIDE m_side = SIDE.Mid;
-    public float xValue = 2f;
+    public float xShiftValue = 2.5f;
     public float jumpSpeed = 7.5f;
     public float dodgeSpeed = 10f;
     public float fwdMovementSpeed = 7.5f;
@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public HitX hitX = HitX.None;
     public HitY hitY = HitY.None;
     public HitZ hitZ = HitZ.None;
+
+    public ParticleSystem bloodeffect;
 
     void Start()
     {
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             if(m_side == SIDE.Mid)
             {
-                newXPos = -xValue;
+                newXPos = -xShiftValue;
                 m_side = SIDE.Left;
                 m_Animator.Play("DodgeLeft");
             }
@@ -85,7 +87,7 @@ public class PlayerController : MonoBehaviour
         {
             if (m_side == SIDE.Mid)
             {
-                newXPos = xValue;
+                newXPos = xShiftValue;
                 m_side = SIDE.Right;
                 m_Animator.Play("DodgeRight");
             }

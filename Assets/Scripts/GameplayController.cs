@@ -6,34 +6,34 @@ using UnityEngine.SceneManagement;
 
 public class GameplayController : MonoBehaviour
 {
-    public static GameplayController instance;
+    public static GameplayController Instance;
 
-    //public GameObject[] collectablePrefabs;
-    //public GameObject[] obstaclePrefabs;
-    //public GameObject[] enemyPrefabs;
-    public string[] collectablePrefabTags;
-    public string[] obstaclePrefabTags;
-    public string[] enemyPrefabTags;
-    public Vector3[] lanes;
-
-    public float xValue = 2.5f, min_ObstacleDelay = 10f, max_ObstacleDelay = 40f;
-
-    private float halfGroundSize;
-    private ObjectPooler objectPooler;
     private PlayerController playerController;
 
-    private Text score_Text;
-    private int enemy_KillCount;
+    public Text coinCount_Text;
+    public Text enemyKillCount_Text;
+    public Text timePassed_Text;
+    public Text distanceTravelled_Text;
 
-    //[SerializeField]
-    //private GameObject onScreenControls;
-    
+    private int enemyKillCount;
+    private int coinCount;
+    private float distanceTravelled;
+    private float timePassed;
+
+    [SerializeField]
+    private Button pause_Exit_Button;
+    [SerializeField]
+    private Button game_Over_Exit_Button;
+    [SerializeField]
+    private Button pause_Button;
+    [SerializeField]
+    private Button resume_Button;
+    [SerializeField]
+    private Button restart_Button;
     [SerializeField]
     private GameObject pause_Panel;
-
     [SerializeField]
     private GameObject gameOver_Panel;
-
     [SerializeField]
     private Text finalScore_Text;
 
@@ -42,145 +42,77 @@ public class GameplayController : MonoBehaviour
         MakeInstance();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        objectPooler = ObjectPooler.Instance;
+        Initializereferences();
+    }
 
-        halfGroundSize = GameObject.Find("GroundBlockMain").GetComponent<GroundBlock>().halfLength;
-        
-        playerController = GameObject.FindGameObjectWithTag(MyTags.PLAYER_TAG).GetComponent<PlayerController>();
+    private void Update()
+    {
+        IncreaseDistanceTravelled();
 
-        StartCoroutine("GenerateObstacles");
-
-        //score_Text = GameObject.Find("Score Bar").GetComponentInChildren<Text>();
+        IncreseTimePassed();
     }
 
     void MakeInstance()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != null)
+        else if (Instance != null)
         {
             Destroy(gameObject);
         }
     }
 
-    IEnumerator GenerateObstacles()
-    {
-        float timer = Random.Range(min_ObstacleDelay, max_ObstacleDelay) / playerController.fwdMovementSpeed;
+    void Initializereferences()
+    {        
+        playerController = GameObject.FindGameObjectWithTag(MyTags.PLAYER_TAG).GetComponent<PlayerController>();
 
-        yield return new WaitForSeconds(timer);
-
-        CreateSpawnables(playerController.gameObject.transform.position.z + halfGroundSize);
-
-        StartCoroutine("GenerateObstacles");
-    }
-
-    void CreateSpawnables(float zPos)
-    {
-        int r = Random.Range(0, 10);
-
-        if (0 <= r && r < 7)
-        {
-            int obstacleLane = Random.Range(0, lanes.Length);
-
-            AddObstacles(new Vector3(lanes[obstacleLane].x, 0f, zPos), Random.Range(0, obstaclePrefabTags.Length));
-
-            int enemyLane = 0;
-
-            if (obstacleLane == 0)
-            {
-                enemyLane = (Random.Range(0, 2) == 1) ? 1 : 2;
-            }
-            else if (obstacleLane == 1)
-            {
-                enemyLane = (Random.Range(0, 2) == 1) ? 0 : 2;
-            }
-            else if (obstacleLane == 2)
-            {
-                enemyLane = (Random.Range(0, 2) == 1) ? 1 : 0;
-            }
-
-            AddEnemies(new Vector3(lanes[enemyLane].x, 0f, zPos));
-
-            int collectableLane = Random.Range(0, 2);
-
-            AddCollectable(new Vector3(lanes[collectableLane].x, 0f, zPos));
-        }
-    }
-
-    void AddObstacles(Vector3 pos, int type)
-    {
-        //GameObject obstacle = Instantiate(obstaclePrefabs[type], position, Quaternion.identity);
-
-        GameObject obstacle = objectPooler.GetPooledObject(obstaclePrefabTags[type], pos, Quaternion.identity);
-
-        bool mirror = Random.Range(0, 2) == 1;
-
-        switch (type)
-        {
-            case 0:
-                obstacle.transform.rotation = Quaternion.Euler(0f, mirror ? -20 : 20, 0f);
-                break;
-            case 1:
-                obstacle.transform.rotation = Quaternion.Euler(0f, mirror ? -20 : 20, 0f);
-                break;
-            case 2:
-                obstacle.transform.rotation = Quaternion.Euler(0f, mirror ? -1 : 1, 0f);
-                break;
-            case 3:
-                obstacle.transform.rotation = Quaternion.Euler(0f, mirror ? -170 : 170, 0f);
-                break;
-        }
-
-        obstacle.transform.position = pos;
-    }
-
-    void AddEnemies(Vector3 pos, int type = 0)
-    {
-        int count = Random.Range(0, 3) + 1;
-
-        for(int i=0; i<count; i++)
-        {
-            Vector3 shift = new Vector3(0f, 0f, Random.Range(1f, 10f) * i);
-
-            //Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], pos + shift * i, Quaternion.identity);
-            GameObject enemy = objectPooler.GetPooledObject(enemyPrefabTags[Random.Range(0, enemyPrefabTags.Length)], pos + shift * i, Quaternion.identity);
-        }
+        pause_Button.onClick.AddListener(PauseGame);
+        resume_Button.onClick.AddListener(ResumeGame);
+        pause_Exit_Button.onClick.AddListener(ExitGame);
+        restart_Button.onClick.AddListener(RestartGame);
+        game_Over_Exit_Button.onClick.AddListener(ExitGame);
     }
     
-    void AddCollectable(Vector3 pos, int type = 0)
+    public void IncreaseKillCount()
     {
-        int count = Random.Range(0, 3) + 1;
-
-        for(int i=0; i<count; i++)
-        {
-            Vector3 shift = new Vector3(0f, Random.Range(1f, 2f), Random.Range(1f, 10f) * i);
-
-            //Instantiate(collectablePrefabs[Random.Range(0, collectablePrefabs.Length)], pos + shift * i, Quaternion.identity);
-            GameObject collectable = objectPooler.GetPooledObject(collectablePrefabTags[Random.Range(0, collectablePrefabTags.Length)], pos + shift * i, Quaternion.identity);
-        }
+        enemyKillCount++;
+        
+        enemyKillCount_Text.text =  $"Kills : {enemyKillCount}";
     }
 
-    public void IncreaseScore()
+    public void IncreaseCoinCount()
     {
-        enemy_KillCount++;
-        score_Text.text = enemy_KillCount.ToString();
+        coinCount++;
+        
+        coinCount_Text.text = $"Coins : {coinCount}";
+    }
+
+    private void IncreseTimePassed()
+    {
+        timePassed += Time.deltaTime;
+        
+        timePassed_Text.text = $"Time : {timePassed.ToString("0")}s";
+    }
+
+    private void IncreaseDistanceTravelled()
+    {
+        distanceTravelled = Vector3.Distance(playerController.gameObject.transform.position, Vector3.zero);
+
+        distanceTravelled_Text.text = $"Dist. : {(int)distanceTravelled}m";
     }
 
     public void PauseGame()
     {
-        //onScreenControls.SetActive(false);
         pause_Panel.SetActive(true);
         Time.timeScale = 0f;
     }    
 
     public void ResumeGame()
     {
-        //onScreenControls.SetActive(true);
         pause_Panel.SetActive(false);
         Time.timeScale = 1f;
     }
@@ -188,17 +120,17 @@ public class GameplayController : MonoBehaviour
     public void ExitGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
     }
 
     public void GameOver()
     {
         Time.timeScale = 0f;
         gameOver_Panel.SetActive(true);
-        finalScore_Text.text = "Kiled: " + enemy_KillCount.ToString();
+        finalScore_Text.text = $"Final Score: {enemyKillCount + (int)timePassed + (int)distanceTravelled}";
     }
 
-    public void Restart()
+    public void RestartGame()
     {
         Time.timeScale = 1f;
         string sceneName = SceneManager.GetActiveScene().name;
