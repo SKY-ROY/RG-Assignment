@@ -7,8 +7,11 @@ public class PlayerController : MonoBehaviour
     private float newXPos = 0f;
     private float moveX;
     private float moveY;
-    private float colliderHeight;
-    private float colliderCenterY;
+    private float character_ColliderHeight;
+    private float character_colliderCenterY;
+    private float capsule_ColliderHeight;
+    private Vector3 capsule_colliderCenter;
+    private CapsuleCollider m_col;
     private CharacterController m_char;
     private Animator m_Animator;
 
@@ -50,10 +53,15 @@ public class PlayerController : MonoBehaviour
 
     private void InititalizeReference()
     {
+        m_col = GetComponent<CapsuleCollider>();
         m_char = GetComponent<CharacterController>();
         m_Animator = GetComponent<Animator>();
-        colliderHeight = m_char.height;
-        colliderCenterY = m_char.center.y;
+
+        character_ColliderHeight = m_char.height;
+        character_colliderCenterY = m_char.center.y;
+
+        capsule_ColliderHeight = m_col.height;
+        capsule_colliderCenter = m_col.center;
     }
 
     private void ResetPosition()
@@ -143,8 +151,13 @@ public class PlayerController : MonoBehaviour
         if(slideCounter <= 0f)
         {
             slideCounter = 0f;
-            m_char.center = new Vector3(0, colliderCenterY, 0);
-            m_char.height = colliderHeight;
+            
+            m_char.center = new Vector3(0, character_colliderCenterY, 0);
+            m_char.height = character_ColliderHeight;
+
+            m_col.center = capsule_colliderCenter;
+            m_col.height = capsule_ColliderHeight;
+
             inRoll = false;
         }
         if(swipeDown)
@@ -152,8 +165,11 @@ public class PlayerController : MonoBehaviour
             slideCounter = slideDuration;
             moveY -= 10f;
 
-            m_char.center = new Vector3(0, colliderCenterY / 2, 0);
-            m_char.height = colliderHeight / 2;
+            m_char.center = new Vector3(0, character_colliderCenterY / 2, 0);
+            m_char.height = character_ColliderHeight / 2;
+
+            m_col.center = new Vector3(capsule_colliderCenter.x, capsule_colliderCenter.y / 2, capsule_colliderCenter.z);
+            m_col.height = capsule_ColliderHeight / 2;
 
             Debug.Log("Sliding");
             m_Animator.CrossFadeInFixedTime("Slide", 0.1f);
@@ -181,9 +197,9 @@ public class PlayerController : MonoBehaviour
         HitX hit;
 
         if (average > colliderBounds.size.x - 0.33f)
-            hit = HitX.Right;
-        else if (average < 0.33f)
             hit = HitX.Left;
+        else if (average < 0.33f)
+            hit = HitX.Right;
         else
             hit = HitX.Mid;
         return hit;

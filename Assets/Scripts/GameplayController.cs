@@ -127,7 +127,7 @@ public class GameplayController : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameOver_Panel.SetActive(true);
-        finalScore_Text.text = $"Final Score: {enemyKillCount + (int)timePassed + (int)distanceTravelled}";
+        finalScore_Text.text = $"Final Score: {enemyKillCount} + {(int)timePassed}s + {(int)distanceTravelled}m = {enemyKillCount + (int)timePassed + (int)distanceTravelled}";
     }
 
     public void RestartGame()
