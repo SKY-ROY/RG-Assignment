@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieScript : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
     public GameObject bloodFXPrefab;
 
