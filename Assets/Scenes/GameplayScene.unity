@@ -152,11 +152,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1205480915}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 300}
+  m_AnchoredPosition: {x: 50, y: 200}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &20674153
@@ -258,11 +258,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
-    m_FontStyle: 1
+    m_FontSize: 50
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 40
+    m_MaxSize: 51
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -786,7 +786,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 40
@@ -1305,7 +1305,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 40
@@ -1642,11 +1642,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1205480915}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 400}
+  m_AnchoredPosition: {x: 50, y: 300}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &966878640
@@ -1748,11 +1748,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 35
-    m_FontStyle: 1
+    m_FontSize: 50
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 56
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2030,10 +2030,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2021663357}
   - {fileID: 966878639}
   - {fileID: 20674152}
   - {fileID: 1209422327}
-  - {fileID: 2021663357}
   - {fileID: 2000774215}
   - {fileID: 704892214}
   m_Father: {fileID: 941021691}
@@ -2111,11 +2111,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1205480915}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 200}
+  m_AnchoredPosition: {x: 50, y: 100}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1209422328
@@ -2217,11 +2217,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
-    m_FontStyle: 1
+    m_FontSize: 50
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 40
+    m_MaxSize: 51
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2432,29 +2432,29 @@ MonoBehaviour:
     amountToPool: 25
   - objectTag: Barrels
     objectPrefab: {fileID: 187984, guid: ae8523ab71690d84c956e6bc024c13ce, type: 3}
-    amountToPool: 10
+    amountToPool: 20
   - objectTag: BurningTires
     objectPrefab: {fileID: 154914, guid: 1b322690258cd174bb9c592e647d8939, type: 3}
-    amountToPool: 10
+    amountToPool: 20
   - objectTag: Rocks
     objectPrefab: {fileID: 155790, guid: 5bab32b03fe1e804cb2a58aad231ecbf, type: 3}
-    amountToPool: 10
+    amountToPool: 20
   - objectTag: SandBags
     objectPrefab: {fileID: 977962631269491230, guid: 723951b666fd4c247a7447c7fa0da8fc,
       type: 3}
-    amountToPool: 10
+    amountToPool: 20
   - objectTag: FuelTankLarge
     objectPrefab: {fileID: 9019874994598204449, guid: d3601ec9a9bf6004e8a3a4e9956b5ede,
       type: 3}
-    amountToPool: 5
+    amountToPool: 10
   - objectTag: ObstacleTruck1
     objectPrefab: {fileID: 1226799826503676979, guid: fb27a3e1deb42f94b971b9d07601baa9,
       type: 3}
-    amountToPool: 5
+    amountToPool: 10
   - objectTag: ObstacleTruck2
     objectPrefab: {fileID: 6395341879854624076, guid: 35ccfa694b9622f4d9b9d518ae6f553e,
       type: 3}
-    amountToPool: 5
+    amountToPool: 10
   - objectTag: ExplosionEffect
     objectPrefab: {fileID: 1242859992640132, guid: b8b0365b178d70649aeaa419ad00aa3f,
       type: 3}
@@ -2492,7 +2492,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 2.5, y: 0, z: 0}
   minObstacleDelay: 10
-  maxObstacleDelay: 40
+  maxObstacleDelay: 20
   spawnEnemies: 0
   spawnObstacles: 1
   spawnCollectables: 1
@@ -2874,7 +2874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2021663357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2887,11 +2887,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1205480915}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 100}
+  m_AnchoredPosition: {x: 50, y: 400}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2021663358
