@@ -6,13 +6,22 @@ public class WorldBuilder : MonoBehaviour
 {
     public static WorldBuilder Instance;
 
+    [Header("Prefabs for random spawning")]
     public GameObject[] collectablePrefabs;
     public GameObject[] obstaclePrefabs;
     public GameObject[] enemyPrefabs;
+    
+    [Header("Lane Vectors(x only)")]
     public Vector3[] lanes;
 
-    public float minObstacleDelay = 10f, maxObstacleDelay = 40f;
-    public bool spawnEnemies = false, spawnObstacles = true, spawnCollectables = true;
+    [Header("Object spawn delay timers")]
+    public float minObstacleDelay = 10f; 
+    public float maxObstacleDelay = 40f;
+
+    [Header("Object spawn control")]
+    public bool spawnEnemies = false;
+    public bool spawnObstacles = true; 
+    public bool spawnCollectables = true;
 
     [Range(0.5f,2f)]
     public float spawnRangeMultiplier = 1f;
