@@ -11,27 +11,36 @@ public class PlayerController : MonoBehaviour
     private float character_colliderCenterY;
     private float capsule_ColliderHeight;
     private Vector3 capsule_colliderCenter;
+    private Vector3 defaultAvatarPosition;
     private CapsuleCollider m_col;
     private CharacterController m_char;
     private Animator m_Animator;
 
+
     [HideInInspector]
     public bool swipeLeft, swipeRight, swipeUp, swipeDown;
     
+    [Header("Lane Values")]
     public SIDE m_side = SIDE.Mid;
     public float xShiftValue = 2.5f;
+    
+    [Header("Player Movement Parameters")]
     public float jumpSpeed = 7.5f;
     public float dodgeSpeed = 10f;
     public float fwdMovementSpeed = 7.5f;
     public float slideDuration = 0.5f;
-    public bool inJump;
-    public bool inRoll;
-
+    
+    [Header("Dynamic Collision Detectors")]
     public HitX hitX = HitX.None;
     public HitY hitY = HitY.None;
     public HitZ hitZ = HitZ.None;
 
+    [Header("Cosmetic References")]
+    public GameObject characterAvatar;
     public ParticleSystem bloodeffect;
+
+    [HideInInspector]
+    public bool inJump = false, inSlide = false;
 
     void Start()
     {
@@ -62,6 +71,9 @@ public class PlayerController : MonoBehaviour
 
         capsule_ColliderHeight = m_col.height;
         capsule_colliderCenter = m_col.center;
+
+        defaultAvatarPosition = characterAvatar.transform.localPosition;
+        Debug.Log("Default avatar position: " + defaultAvatarPosition);
     }
 
     private void ResetPosition()
@@ -76,7 +88,7 @@ public class PlayerController : MonoBehaviour
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
         
-        if(swipeLeft && !inRoll)
+        if(swipeLeft && !inSlide)
         {
             if(m_side == SIDE.Mid)
             {
@@ -91,7 +103,7 @@ public class PlayerController : MonoBehaviour
                 m_Animator.Play("DodgeLeft");
             }
         }
-        else if (swipeRight && !inRoll)
+        else if (swipeRight && !inSlide)
         {
             if (m_side == SIDE.Mid)
             {
@@ -125,6 +137,7 @@ public class PlayerController : MonoBehaviour
                 m_Animator.Play("Land");
                 inJump = false;
             }
+
             if(swipeUp)
             {
                 Debug.Log("Jumping");
@@ -158,8 +171,11 @@ public class PlayerController : MonoBehaviour
             m_col.center = capsule_colliderCenter;
             m_col.height = capsule_ColliderHeight;
 
-            inRoll = false;
+            characterAvatar.transform.localPosition = defaultAvatarPosition;
+
+            inSlide = false;
         }
+
         if(swipeDown)
         {
             slideCounter = slideDuration;
@@ -171,13 +187,16 @@ public class PlayerController : MonoBehaviour
             m_col.center = new Vector3(capsule_colliderCenter.x, capsule_colliderCenter.y / 2, capsule_colliderCenter.z);
             m_col.height = capsule_ColliderHeight / 2;
 
+            characterAvatar.transform.localPosition = new Vector3(defaultAvatarPosition.x, defaultAvatarPosition.y - 0.85f, defaultAvatarPosition.z);
+
             Debug.Log("Sliding");
             m_Animator.CrossFadeInFixedTime("Slide", 0.1f);
-            inRoll = true;
+            inSlide = true;
             inJump = false;
         }
     }
 
+    #region Dynamic Collision System
     public void OnCharacterColliderHit(Collider col)
     {
         hitX = GetHitX(col);
@@ -244,4 +263,7 @@ public class PlayerController : MonoBehaviour
             hit = HitZ.Forward;
         return hit;
     }
+    
+    #endregion
+
 }

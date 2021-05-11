@@ -157,7 +157,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 50, y: 200}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &20674153
 MonoBehaviour:
@@ -526,12 +526,13 @@ MonoBehaviour:
   dodgeSpeed: 10
   fwdMovementSpeed: 15
   slideDuration: 0.5
-  inJump: 0
-  inRoll: 0
   hitX: 3
   hitY: 3
   hitZ: 3
+  characterAvatar: {fileID: 919132149284585421}
   bloodeffect: {fileID: 198603437531614714}
+  inJump: 0
+  inSlide: 0
 --- !u!54 &286729750
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1647,7 +1648,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 50, y: 300}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &966878640
 MonoBehaviour:
@@ -2116,7 +2117,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 50, y: 100}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1209422328
 MonoBehaviour:
@@ -2405,6 +2406,7 @@ MonoBehaviour:
   enemyKillCount_Text: {fileID: 2021663358}
   timePassed_Text: {fileID: 20674153}
   distanceTravelled_Text: {fileID: 1209422328}
+  finalScore_Text: {fileID: 1774624422}
   pause_Exit_Button: {fileID: 1526997089}
   game_Over_Exit_Button: {fileID: 1088394383}
   pause_Button: {fileID: 704892215}
@@ -2412,7 +2414,6 @@ MonoBehaviour:
   restart_Button: {fileID: 649429639}
   pause_Panel: {fileID: 1755292589}
   gameOver_Panel: {fileID: 1165564727}
-  finalScore_Text: {fileID: 1774624422}
 --- !u!114 &1639095908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2892,7 +2893,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 50, y: 400}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2021663358
 MonoBehaviour:
